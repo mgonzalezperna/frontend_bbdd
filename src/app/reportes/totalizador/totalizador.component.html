@@ -1,0 +1,39 @@
+<mat-card class="top-5-card">
+  <mat-card-title style="margin-bottom:2rem;">
+    <h5><strong>Cantidad de descargas</strong></h5>
+  </mat-card-title>
+  <!-- <mat-card-subtitle> Card subtitle</mat-card-subtitle> -->
+  <mat-card-content>
+    <div class="row">
+      <mat-form-field class="example-full-width fecha">
+        <input matInput [matDatepicker]="fecha_desde" placeholder="Fecha desde">
+        <mat-datepicker-toggle matSuffix [for]="fecha_desde">
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #fecha_desde></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="example-full-width fecha">
+        <input matInput [matDatepicker]="fecha_hasta" placeholder="Fecha hasta">
+        <mat-datepicker-toggle matSuffix [for]="fecha_hasta">
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #fecha_hasta></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Categoría</mat-label>
+        <mat-select [(ngModel)]="categoria">
+          <mat-option *ngFor="let categoria of listado_categorias" [value]="categoria">
+            {{categoria.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+
+  <!-- <img mat-card-image> Card image. Stretches the image to the container width -->
+  <mat-card-actions>
+    <button class="mat-button top-5 letra-blanca" mat-button (click)="eliminar()" [mat-dialog-close]=TRUE
+      cdkFocusInitial>Totalizador</button>
+  </mat-card-actions>
+  <!-- <mat-card-footer></mat-card-footer> -->
+</mat-card>
