@@ -41,6 +41,7 @@ import { ReportesComponent } from './reportes/reportes.component';
 import { TotalizadorComponent } from './reportes/totalizador/totalizador.component';
 import { TopFiveComponent } from './reportes/top-five/top-five.component';
 import { TopFiveListComponent } from './reportes/top-five/top-five-list/top-five-list.component';
+import { TotalizadorListComponent } from './reportes/totalizador/totalizador-list/totalizador-list.component';
 
 
 export default function imports_list() {
@@ -94,7 +95,7 @@ export default function imports_list() {
       TopFiveComponent,
       TopFiveListComponent,
       TotalizadorComponent,
-      TotalizadorComponent,
+      TotalizadorListComponent,
    ],
    imports: [
       imports_list()
