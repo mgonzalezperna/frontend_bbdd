@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { TopFiveComponent } from './topFive.component';
+import { TopFiveComponent } from './top-five.component';
 
 describe('TopFiveComponent', () => {
   let component: TopFiveComponent;

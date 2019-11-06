@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'topFive',
-  templateUrl: './topFive.component.html',
-  styleUrls: ['./topFive.component.css']
+  selector: 'top-five',
+  templateUrl: './top-five.component.html',
+  styleUrls: ['./top-five.component.css']
 })
 export class TopFiveComponent implements OnInit {
 

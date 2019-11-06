@@ -38,8 +38,8 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import { OptionsComponent } from './main-menu/options/options.component';
 import { CategoriasListComponent, CategoriasDetailComponent, CategoriaDeleteConfirmComponent } from './categorias-list/categorias-list.component';
 import { ReportesComponent } from './reportes/reportes.component';
-import { TopFiveComponent } from './reportes/topFive/topFive.component';
 import { TotalizadorComponent } from './reportes/totalizador/totalizador.component';
+import { TopFiveComponent } from './reportes/top-five/top-five.component';
 
 
 export default function imports_list() {
