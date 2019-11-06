@@ -12,6 +12,14 @@
     background-color: #0d47a1;
 }
 
+.volver-container {
+    margin-top: 1rem;
+}
+
+.volver {
+    background-color: #00C851;
+}
+
 .letra-blanca {
     color: white;
 }
