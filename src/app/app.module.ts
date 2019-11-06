@@ -40,6 +40,7 @@ import { CategoriasListComponent, CategoriasDetailComponent, CategoriaDeleteConf
 import { ReportesComponent } from './reportes/reportes.component';
 import { TotalizadorComponent } from './reportes/totalizador/totalizador.component';
 import { TopFiveComponent } from './reportes/top-five/top-five.component';
+import { TopFiveListComponent } from './reportes/top-five/top-five-list/top-five-list.component';
 
 
 export default function imports_list() {
@@ -91,6 +92,8 @@ export default function imports_list() {
       CategoriaDeleteConfirmComponent,
       ReportesComponent,
       TopFiveComponent,
+      TopFiveListComponent,
+      TotalizadorComponent,
       TotalizadorComponent,
    ],
    imports: [
