@@ -1,0 +1,39 @@
+.titulo {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.top-5 {
+    background-color: #4285F4;
+}
+
+.letra-blanca {
+    color: white;
+}
+
+.alinear-derecha {
+    text-align: right;
+}
+
+.top-5-card {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.container {
+    width: 45rem;
+}
+
+.fecha {
+    margin-right: 2rem;
+}
+
+.volver-container {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.volver {
+    background-color: #00C851;
+}

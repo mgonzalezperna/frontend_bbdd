@@ -10,14 +10,16 @@ import { FormNuevoEventoComponent } from '../form-nuevo-evento/form-nuevo-evento
 import { FormNuevoEventoAbiertoComponent } from '../form-nuevo-evento/form-nuevo-evento-abierto/form-nuevo-evento-abierto.component'
 import { FormNuevoEventoCerradoComponent } from '../form-nuevo-evento/form-nuevo-evento-cerrado/form-nuevo-evento-cerrado.component'
 import { CategoriasListComponent } from '../categorias-list/categorias-list.component';
+import { ReportesComponent } from '../reportes/reportes.component';
+import { TopFiveComponent } from '../reportes/topFive/topFive.component';
 
 //TODO: falta agregar el routing a 404
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio', component: MainMenuComponent },
   { path: 'categorias', component: CategoriasListComponent },
-  { path: 'reportes', component: FormNuevoEventoComponent, children: [
-    { path: 'top-5', component: FormNuevoEventoAbiertoComponent },
+  { path: 'reportes', component: ReportesComponent, children: [
+    { path: 'top-5', component: TopFiveComponent },
     { path: 'totalizador', component: FormNuevoEventoCerradoComponent },
   ] },
 ];

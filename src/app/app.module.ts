@@ -37,6 +37,9 @@ import { AppRoutingModule, routingComponents } from "./app-routing/app-routing.m
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { OptionsComponent } from './main-menu/options/options.component';
 import { CategoriasListComponent, CategoriasDetailComponent, CategoriaDeleteConfirmComponent } from './categorias-list/categorias-list.component';
+import { ReportesComponent } from './reportes/reportes.component';
+import { TopFiveComponent } from './reportes/topFive/topFive.component';
+import { TotalizadorComponent } from './reportes/totalizador/totalizador.component';
 
 
 export default function imports_list() {
@@ -86,6 +89,9 @@ export default function imports_list() {
       CategoriasListComponent,
       CategoriasDetailComponent,
       CategoriaDeleteConfirmComponent,
+      ReportesComponent,
+      TopFiveComponent,
+      TotalizadorComponent,
    ],
    imports: [
       imports_list()
