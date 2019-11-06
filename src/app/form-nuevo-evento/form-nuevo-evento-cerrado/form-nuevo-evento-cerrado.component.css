@@ -1,0 +1,11 @@
+.divider {
+    margin: 1%;
+    width: calc(100% - 72px);
+    border: 3%;
+}
+
+.input {
+    margin: 1%;
+    border: 3%;
+    width:400px !important;
+}

@@ -1,0 +1,14 @@
+<div mat-dialog-content>
+    <mat-form-field>
+        <input placeholder="Nombre Categoria" matInput [(ngModel)]="categoria.nombre">
+    </mat-form-field>
+    <mat-form-field>
+        <input placeholder="Descripción Categoria" matInput [(ngModel)]="categoria.descripcion">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button (click)="aceptar()" [mat-dialog-close]=TRUE cdkFocusInitial>Aplicar</button>
+</div>
+
+

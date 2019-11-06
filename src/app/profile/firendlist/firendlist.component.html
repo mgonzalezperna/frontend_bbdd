@@ -1,0 +1,13 @@
+<div>
+  <h2>Amigos</h2>
+
+  <table *ngIf="current_user !=undefined">
+    <tr *ngFor="let amigo of current_user.amigos">
+      <td>{{amigo.nombreApellido}}</td>
+      <td>{{amigo.userName}}</td>
+      <td><button mat-icon-button (click)="eliminarAmigo(amigo)" class="mat-flat-button">
+          <mat-icon class=red-icon>close</mat-icon>
+        </button></td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,6 @@
+<h2 >Agenda</h2>
+<div>
+<app-event-in-period [fecha_desde]="ahora" [fecha_hasta]="maniana" label="Hoy"></app-event-in-period>
+<app-event-in-period [fecha_desde]="maniana" [fecha_hasta]="semana" label="Esta Semana"></app-event-in-period>
+<app-event-in-period [fecha_desde]="semana" [fecha_hasta]="proximos" label="Próximos"></app-event-in-period>
+</div>

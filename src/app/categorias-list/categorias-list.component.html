@@ -1,0 +1,29 @@
+<div>
+  <h2>Categorias</h2>
+  <div align='right'>
+    <button mat-raised-button (click)="crearCategoria()" class="mat-button">Crear</button>
+  </div>
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripcion</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let categoria of listado_categorias">
+            <td>{{categoria.nombre}}</td>
+            <td>{{categoria.descripcion}}</td>
+            <td>
+              <button mat-icon-button (click)="editarCategoria(categoria)" class="mat-flat-button">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button (click)="eliminarCategoria(categoria)" class="mat-flat-button">
+                  <mat-icon class=red-icon>close</mat-icon>
+                </button>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+</div>

@@ -1,0 +1,58 @@
+<h2>Invitaciones Pendientes</h2>  
+<table *ngIf="hayDatos; else sinElementos" mat-table [dataSource]="invitaciones" class="mat-elevation-z8" >
+            
+  <ng-container matColumnDef='fecha'>
+      <th mat-header-cell *matHeaderCellDef> fecha/hora </th>
+      <td mat-cell *matCellDef="let invitacion"> {{invitacion.evento.fechaHoraInicio | date:"dd/MM/yy HH:mm"}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef='evento'>
+      <th mat-header-cell *matHeaderCellDef> evento </th>
+      <td mat-cell *matCellDef="let invitacion"> {{invitacion.evento.descripcion}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef='lugar'>
+      <th mat-header-cell *matHeaderCellDef> lugar </th>
+      <td mat-cell *matCellDef="let invitacion"> {{invitacion.evento.locacion.descripcion}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef='organizador'>
+      <th mat-header-cell *matHeaderCellDef> organizador </th>
+      <td mat-cell *matCellDef="let invitacion"> {{invitacion.evento.organizador.nombreApellido}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef='acompañantes'>
+    <th mat-header-cell *matHeaderCellDef> acompañantes </th>
+    <td mat-cell *matCellDef="let invitacion">
+        <input mat-input [(ngModel)]='invitacion.cantidadAcompaniantes' type="number" name="acompaniantes" min="0" [max]="invitacion.maxCantidadAcompaniantes" (change)="validateAcompaniantes(invitacion)">
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef='acciones'>
+      <th mat-header-cell *matHeaderCellDef> acciones </th>
+      <td mat-cell *matCellDef="let invitacion">
+        <button disabled={{puedeAceptar(invitacion)}} mat-icon-button (click)="aceptar(invitacion)" class="mat-flat-button">
+          <mat-icon class="green-icon">check</mat-icon>
+        </button>
+        <button mat-icon-button (click)="rechazar(invitacion)" class="mat-flat-button">
+          <mat-icon class=red-icon>close</mat-icon>
+        </button>
+      </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<ng-template #sinElementos>
+    <p>No tenés invitaciones pendientes</p>
+</ng-template>
+
+<mat-list>
+    <mat-list-item *ngFor="let error of errores">
+      <mat-icon mat-list-icon color="warn">error</mat-icon>
+      <h4 mat-line >Error!</h4>
+      <p mat-line > {{error}} </p>
+    </mat-list-item>
+  </mat-list>
+  

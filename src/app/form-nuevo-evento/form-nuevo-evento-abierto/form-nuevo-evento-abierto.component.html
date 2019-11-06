@@ -1,0 +1,26 @@
+<mat-divider class='divider'></mat-divider>
+
+<mat-form-field>
+  <input class='input' matInput type="number" class="form-control" placeholder="Edad Minima" [(ngModel)]='edadMinima' [formControl]='edadMinimaValidator'>
+  <mat-error *ngIf="edadMinimaValidator">{{getErrorMsgEdadMinima()}}</mat-error>
+</mat-form-field>
+
+<mat-divider class='divider' [vertical]="true" [inset]="true" ></mat-divider>
+
+<mat-form-field>
+  <input class='input' matInput type="number" class="form-control" placeholder="Precio entrada" [(ngModel)]='precioEntrada' [formControl]='precioEntradaValidator'>
+  <mat-error *ngIf="precioEntradaValidator">{{getErrorMsgPrecioEntrada()}}</mat-error>
+</mat-form-field>
+
+<mat-divider class='divider'></mat-divider>
+
+<button mat-button (click)='submit()' [disabled]="canAccept()">Aceptar</button>
+<button mat-button (click)='return()'>Cancelar</button>
+
+<mat-list>
+  <mat-list-item *ngFor="let error of errores">
+    <mat-icon mat-list-icon color="warn">error</mat-icon>
+    <h4 mat-line >Error!</h4>
+    <p mat-line > {{error}} </p>
+  </mat-list-item>
+</mat-list>
