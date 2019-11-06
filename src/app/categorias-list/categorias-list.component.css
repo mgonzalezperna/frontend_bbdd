@@ -1,0 +1,14 @@
+.margen {
+    margin-right: 6rem;
+    margin-left: 6rem;
+}
+
+.titulo {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.boton-crear {
+    margin-bottom: 1rem;
+}
