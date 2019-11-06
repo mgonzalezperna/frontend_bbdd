@@ -8,6 +8,7 @@ import { Input, Component, OnInit } from '@angular/core';
 export class OptionsComponent implements OnInit {
   @Input() menu_button_desc: String
   @Input() menu_button: String
+  @Input() route: String
 
   constructor() { }
 
