@@ -1,14 +1,21 @@
-.margen {
-    margin-right: 6rem;
-    margin-left: 6rem;
-}
-
 .titulo {
     font-weight: bold;
     text-align: center;
     margin-top: 3rem;
 }
 
-.boton-crear {
+.crear-container {
     margin-bottom: 1rem;
+}
+
+.crear {
+    background-color: #0d47a1;
+}
+
+.letra-blanca {
+    color: white;
+}
+
+.alinear-derecha {
+    text-align: right;
 }
