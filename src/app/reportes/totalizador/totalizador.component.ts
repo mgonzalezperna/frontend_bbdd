@@ -4,7 +4,7 @@ import { Categoria } from 'src/app/domain/Categoria';
 @Component({
   selector: 'totalizador',
   templateUrl: './totalizador.component.html',
-  styleUrls: ['../reportes.component.css']
+  styleUrls: ['./totalizador.component.css']
 })
 export class TotalizadorComponent implements OnInit {
   fecha_desde: Date

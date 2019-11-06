@@ -12,6 +12,7 @@ import { FormNuevoEventoCerradoComponent } from '../form-nuevo-evento/form-nuevo
 import { CategoriasListComponent } from '../categorias-list/categorias-list.component';
 import { ReportesComponent } from '../reportes/reportes.component';
 import { TopFiveComponent } from '../reportes/topFive/topFive.component';
+import { TotalizadorComponent } from '../reportes/totalizador/totalizador.component';
 
 //TODO: falta agregar el routing a 404
 const routes: Routes = [
@@ -20,7 +21,7 @@ const routes: Routes = [
   { path: 'categorias', component: CategoriasListComponent },
   { path: 'reportes', component: ReportesComponent, children: [
     { path: 'top-5', component: TopFiveComponent },
-    { path: 'totalizador', component: FormNuevoEventoCerradoComponent },
+    { path: 'totalizador', component: TotalizadorComponent },
   ] },
 ];
 
