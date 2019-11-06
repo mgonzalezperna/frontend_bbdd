@@ -36,7 +36,7 @@ import { MatNativeDateModule, MAT_DATE_LOCALE, MatDialogModule }  from '@angular
 import { AppRoutingModule, routingComponents } from "./app-routing/app-routing.module";
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { OptionsComponent } from './main-menu/options/options.component';
-import { CategoriasListComponent, CategoriasDetailComponent } from './categorias-list/categorias-list.component';
+import { CategoriasListComponent, CategoriasDetailComponent, CategoriaDeleteConfirmComponent } from './categorias-list/categorias-list.component';
 
 
 export default function imports_list() {
@@ -85,12 +85,14 @@ export default function imports_list() {
       OptionsComponent,
       CategoriasListComponent,
       CategoriasDetailComponent,
+      CategoriaDeleteConfirmComponent,
    ],
    imports: [
       imports_list()
    ],
    entryComponents: [
       CategoriasDetailComponent,
+      CategoriaDeleteConfirmComponent,
    ],
    providers: [{provide: MAT_DATE_LOCALE, useValue: 'es-ES'}],
    bootstrap: [

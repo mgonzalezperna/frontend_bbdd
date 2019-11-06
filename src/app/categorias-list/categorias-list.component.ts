@@ -25,28 +25,23 @@ export class CategoriasListComponent implements OnInit {
   }
 
   async crearCategoria() {
-    this.openDialog(new Categoria())
+    this.openDialog(new Categoria(), CategoriasDetailComponent)
   }
 
   async editarCategoria(categoria: Categoria) {
-    this.openDialog(categoria)
-
+    this.openDialog(Object.assign(new Categoria(), categoria), CategoriasDetailComponent)
   }
 
   async eliminarCategoria(categoria: Categoria) {
-    try {
-      await this.categoriaService.eliminar(categoria)
-    } catch (error) {
-      console.log(error) //mostrar errores
-    }
+    this.openDialog(categoria, CategoriaDeleteConfirmComponent)
   }
 
-  openDialog(categoria: Categoria): void {
-    const dialogRef = this.dialog.open(CategoriasDetailComponent, {
-      width: '250px',
-      data: Object.assign(new Categoria(), categoria)
+  openDialog(categoria: Categoria, component: any): void {
+    const dialogRef = this.dialog.open(component, {
+      width: '15rem',
+      data: categoria
     });
-    
+
     dialogRef.afterClosed().subscribe(async result => {
       console.log('The dialog was closed');
       if (result) {
@@ -59,20 +54,20 @@ export class CategoriasListComponent implements OnInit {
       }
     });
   }
-  
-}
 
+}
 
 @Component({
   selector: 'categoria-detail-dialog',
   templateUrl: 'categoria-detail-dialog.html',
+  styleUrls: ['./categorias-list.component.css']
 })
 export class CategoriasDetailComponent {
 
   constructor(
     private categoriaService: CategoriasService,
     public dialogRef: MatDialogRef<CategoriasDetailComponent>,
-    @Inject(MAT_DIALOG_DATA) public categoria: Categoria) {}
+    @Inject(MAT_DIALOG_DATA) public categoria: Categoria) { }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -81,6 +76,31 @@ export class CategoriasDetailComponent {
   async aceptar() {
     try {
       await this.categoriaService.actualizarCategoria(this.categoria)
+    } catch (error) {
+      console.log(error) //mostrar errores
+    }
+  }
+
+}
+@Component({
+  selector: 'categoria-delete-confirm',
+  templateUrl: 'categoria-delete-confirm.html',
+  styleUrls: ['./categorias-list.component.css']
+})
+export class CategoriaDeleteConfirmComponent {
+
+  constructor(
+    private categoriaService: CategoriasService,
+    public dialogRef: MatDialogRef<CategoriaDeleteConfirmComponent>,
+    @Inject(MAT_DIALOG_DATA) public categoria: Categoria) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  async eliminar() {
+    try {
+      await this.categoriaService.eliminar(this.categoria)
     } catch (error) {
       console.log(error) //mostrar errores
     }
