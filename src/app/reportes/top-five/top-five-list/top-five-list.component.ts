@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Experiencia } from 'src/app/domain/Experiencia';
+import { ReporteService } from 'src/app/services/reporte.service';
 
 @Component({
   selector: 'app-top-five-list',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopFiveListComponent implements OnInit {
 
-  constructor() { }
+  top_five_experiencias: Experiencia[]
 
-  ngOnInit() {
+  constructor(private reporteService: ReporteService) { }
+
+  async ngOnInit() {
+    this.top_five_experiencias = await this.reporteService.topFive()
   }
 
 }

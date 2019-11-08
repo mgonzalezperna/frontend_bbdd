@@ -6,18 +6,18 @@
     <mat-card-content>
         <div class="row">
             <mat-form-field class="example-full-width fecha">
-                <input matInput [matDatepicker]="fecha_desde" placeholder="Fecha desde">
-                <mat-datepicker-toggle matSuffix [for]="fecha_desde">
+                <input matInput [(ngModel)]='fecha_desde' [matDatepicker]="fecha_desde_picker" placeholder="desde">
+                <mat-datepicker-toggle matSuffix [for]="fecha_desde_picker">
                     <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                 </mat-datepicker-toggle>
-                <mat-datepicker #fecha_desde></mat-datepicker>
+                <mat-datepicker #fecha_desde_picker></mat-datepicker>
             </mat-form-field>
             <mat-form-field class="example-full-width fecha">
-                <input matInput [matDatepicker]="fecha_hasta" placeholder="Fecha hasta">
-                <mat-datepicker-toggle matSuffix [for]="fecha_hasta">
+                <input matInput [(ngModel)]='fecha_hasta' [matDatepicker]="fecha_hasta_picker" placeholder="hasta">
+                <mat-datepicker-toggle matSuffix [for]="fecha_hasta_picker">
                     <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                 </mat-datepicker-toggle>
-                <mat-datepicker #fecha_hasta></mat-datepicker>
+                <mat-datepicker #fecha_hasta_picker></mat-datepicker>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Categoría</mat-label>
@@ -32,7 +32,7 @@
 
     <!-- <img mat-card-image> Card image. Stretches the image to the container width -->
     <mat-card-actions>
-        <button class="mat-button boton-reporte letra-blanca" mat-button routerLink="/reportes/totalizador-list">Totalizador</button>
+        <button class="mat-button boton-reporte letra-blanca" mat-button (click)="irATotalizadorList()">Totalizador</button>
     </mat-card-actions>
     <!-- <mat-card-footer></mat-card-footer> -->
 </mat-card>

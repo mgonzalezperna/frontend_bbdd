@@ -1,12 +1,46 @@
 <div align="center" mat-dialog-content>
-    <mat-form-field>
-        <input placeholder="Nombre Categoria" matInput [(ngModel)]="categoria.nombre">
+    <p style="text-align: center;"><strong>{{titulo}} categoría</strong></p>
+    <form class="example-form">
+    <mat-form-field class="margen-abajo">
+        <input matInput placeholder="Nombre Categoria" [formControl]='nombreValidator' [(ngModel)]="categoria.nombre">
+        <mat-error *ngIf="nombreValidator">{{errorMsgNombre}}</mat-error>
     </mat-form-field>
-    <mat-form-field>
-        <input placeholder="Descripción Categoria" matInput [(ngModel)]="categoria.descripcion">
+    <mat-form-field style="margin-bottom:0.5rem">
+        <input placeholder="Descripción Categoria" [formControl]='descripcionValidator' matInput [(ngModel)]="categoria.descripcion">
+        <mat-error *ngIf="descripcionValidator">{{errorMsgDescripcion}}</mat-error>
     </mat-form-field>
+    </form>
 </div>
 <div align="center" mat-dialog-actions>
-    <button class="mat-button" mat-raised-button (click)="onNoClick()">Cancelar</button>
-    <button mat-button (click)="aceptar()" [mat-dialog-close]=TRUE cdkFocusInitial>Aplicar</button>
+    <button class="mat-button rojo letra-blanca" mat-raised-button (click)="onNoClick()">Cancelar</button>
+    <button class="mat-button verde letra-blanca" mat-raised-button (click)="aceptar()" [disabled]="noCompletoFormulario()" cdkFocusInitial>Aplicar</button>
 </div>
+
+
+
+<!-- <mat-divider class='divider'></mat-divider>
+
+<mat-form-field>
+  <input class='input' matInput type="number" class="form-control" placeholder="Edad Minima" [(ngModel)]='edadMinima' [formControl]='edadMinimaValidator'>
+  <mat-error *ngIf="edadMinimaValidator">{{getErrorMsgEdadMinima()}}</mat-error>
+</mat-form-field>
+
+<mat-divider class='divider' [vertical]="true" [inset]="true" ></mat-divider>
+
+<mat-form-field>
+  <input class='input' matInput type="number" class="form-control" placeholder="Precio entrada" [(ngModel)]='precioEntrada' [formControl]='precioEntradaValidator'>
+  <mat-error *ngIf="precioEntradaValidator">{{getErrorMsgPrecioEntrada()}}</mat-error>
+</mat-form-field>
+
+<mat-divider class='divider'></mat-divider>
+
+<button mat-button (click)='submit()' [disabled]="canAccept()">Aceptar</button>
+<button mat-button (click)='return()'>Cancelar</button>
+
+<mat-list>
+  <mat-list-item *ngFor="let error of errores">
+    <mat-icon mat-list-icon color="warn">error</mat-icon>
+    <h4 mat-line >Error!</h4>
+    <p mat-line > {{error}} </p>
+  </mat-list-item>
+</mat-list> -->

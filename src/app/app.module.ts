@@ -5,10 +5,6 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 
-import { ProfileDetailsComponent } from "./profile/profile-details/profile-details.component";
-import { FirendlistComponent } from "./profile/firendlist/firendlist.component";
-import { AbiertosComponent } from './organizados-por-mi/abiertos/abiertos.component'
-import { CerradosComponent } from './organizados-por-mi/cerrados/cerrados.component'
 //imports de Material2
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -82,10 +78,6 @@ export default function imports_list() {
    declarations: [
       AppComponent,
       routingComponents,
-      ProfileDetailsComponent,
-      FirendlistComponent,
-      AbiertosComponent,
-      CerradosComponent,
       MainMenuComponent,
       OptionsComponent,
       CategoriasListComponent,

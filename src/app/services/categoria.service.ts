@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Evento, Cerrado, Abierto } from "../domain/Evento";
 import { API_URL, userLoggedIn, userLoggedInId } from './configuration';
 import { Http } from '@angular/http';
 import { Categoria } from '../domain/Categoria';
@@ -18,17 +17,22 @@ export class CategoriasService {
   async solicitarListadoCategorias() {
     const url = API_URL + "/categorias"
     const resp = await this.http.get(url).toPromise()
-    return { status: resp.status , data: resp.json().map(Categoria.fromJson) }
+    return resp.json().map(Categoria.fromJson)
+    // return { status: resp.status , data: resp.json().map(Categoria.fromJson) }
   }
 
-  actualizarCategoria(categoria: Categoria) {
-    const url = API_URL + "/categoria/id/" + userLoggedIn
-    return this.http.put(url, categoria.toJSON()).toPromise()
+  async actualizarCategoria(categoria: Categoria) {
+    const url = API_URL + `/categorias/${categoria.idCategoria}/update`
+    await this.http.post(url, categoria.toJSON()).toPromise()
   }
 
-  eliminar(categoria: Categoria) {
-    const url = API_URL + "/categoria/eliminar"
-    const json = { idCategoria: categoria }
-    return this.http.put(url, json).toPromise()
+  async crearCategoria(categoria: Categoria) {
+    const url = API_URL + `/categorias/create`
+    await this.http.post(url, categoria.toJSON()).toPromise()
+  }
+
+  async eliminar(categoria: Categoria) {
+    const url = API_URL + `/categorias/${categoria.idCategoria}/delete`
+    await this.http.post(url, {}).toPromise()
   }
 }

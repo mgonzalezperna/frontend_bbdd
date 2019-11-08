@@ -1,3 +1,21 @@
-<p>
-  top-five-list works!
-</p>
+<div class="container">
+  <h2 class="titulo">Top 5 de experiencia</h2>
+  <div style="text-align: center;" class="card">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Título</th>
+          <th scope="col">Puntaje</th>
+          <th scope="col">Comentario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let experiencia of top_five_experiencias">
+          <td>{{experiencia.Titulo}}</td>
+          <td>{{experiencia.Puntaje}}</td>
+          <td>{{experiencia.Comentario}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>  

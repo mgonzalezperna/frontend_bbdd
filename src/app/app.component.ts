@@ -6,5 +6,5 @@ import { Component, Injectable } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Inicio';
+  title = 'Categorias y Reportes';
 }

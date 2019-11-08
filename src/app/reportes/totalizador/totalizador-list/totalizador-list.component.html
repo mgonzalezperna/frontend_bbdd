@@ -1,3 +1,23 @@
-<p>
-  totalizador-list works!
-</p>
+<div class="container">
+  <h2 class="titulo">Totalizador de descargas</h2>
+  <div style="text-align: center;" class="card">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Archivo</th>
+          <th scope="col">Puntaje</th>
+          <th scope="col">Velocidad promedio</th>
+          <th scope="col">Total de descargas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reporte of reportes_descargas">
+          <td>{{reporte.Titulo}}</td>
+          <td>{{reporte.Promedio_puntaje}}</td>
+          <td>{{reporte.Velocidad_maxima}}</td>
+          <td>{{reporte.Comentario}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>  

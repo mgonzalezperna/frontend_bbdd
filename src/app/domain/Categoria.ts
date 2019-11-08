@@ -1,14 +1,14 @@
 import { remove, concat } from "lodash";
 
 export class Categoria {
-    id: String
+    idCategoria: String
     nombre: String
     descripcion: String
 
     constructor(id?:String, nombre?:String, descripcion?:String) {
-        this.id = id
-        this.nombre = id
-        this.descripcion = id
+        this.idCategoria = id
+        this.nombre = nombre
+        this.descripcion = descripcion
     }
 
     static fromJson(CategoriaJson) {
