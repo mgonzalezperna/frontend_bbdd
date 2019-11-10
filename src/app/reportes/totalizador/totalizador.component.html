@@ -4,16 +4,20 @@
     </mat-card-title>
     <!-- <mat-card-subtitle> Card subtitle</mat-card-subtitle> -->
     <mat-card-content>
-        <div class="row">
+        <form class="row">
             <mat-form-field class="example-full-width fecha">
-                <input matInput [(ngModel)]='fecha_desde' [matDatepicker]="fecha_desde_picker" placeholder="desde">
+                <input matInput [(ngModel)]='fecha_desde' [matDatepicker]="fecha_desde_picker"
+                    [formControl]='fechaDesdeValidator' placeholder="desde">
+                <mat-error *ngIf="fechaDesdeValidator">{{errorMsgFechaDesde}}</mat-error>
                 <mat-datepicker-toggle matSuffix [for]="fecha_desde_picker">
                     <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                 </mat-datepicker-toggle>
                 <mat-datepicker #fecha_desde_picker></mat-datepicker>
             </mat-form-field>
             <mat-form-field class="example-full-width fecha">
-                <input matInput [(ngModel)]='fecha_hasta' [matDatepicker]="fecha_hasta_picker" placeholder="hasta">
+                <input matInput [(ngModel)]='fecha_hasta' [matDatepicker]="fecha_hasta_picker"
+                    [formControl]='fechaHastaValidator' placeholder="hasta">
+                <mat-error *ngIf="fechaHastaValidator">{{errorMsgFechaHasta}}</mat-error>
                 <mat-datepicker-toggle matSuffix [for]="fecha_hasta_picker">
                     <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                 </mat-datepicker-toggle>
@@ -21,18 +25,24 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Categoría</mat-label>
-                <mat-select [(ngModel)]="categoria">
+                <mat-select name="categoria" [(ngModel)]="categoria" [formControl]='categoriaValidator'>
                     <mat-option *ngFor="let categoria of listado_categorias" [value]="categoria">
                         {{categoria.nombre}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-        </div>
+        </form>
     </mat-card-content>
 
     <!-- <img mat-card-image> Card image. Stretches the image to the container width -->
     <mat-card-actions>
         <button class="mat-button boton-reporte letra-blanca" mat-button (click)="irATotalizadorList()">Totalizador</button>
     </mat-card-actions>
-    <!-- <mat-card-footer></mat-card-footer> -->
+    <mat-error *ngIf="false">{{errorMsgFechaHasta}}</mat-error>
+    <mat-card-footer>
+        <div style="height: 2rem;margin-top: 1.5rem;margin-bottom: 1rem;">
+            <mat-error *ngIf="error">{{error}}</mat-error>
+        </div>
+    </mat-card-footer>
+
 </mat-card>
