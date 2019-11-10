@@ -13,6 +13,7 @@ import { Validators, FormControl } from '@angular/forms';
 })
 export class CategoriasListComponent implements OnInit {
   listado_categorias: Categoria[]
+  cargando: boolean = false
 
   constructor(private categoriaService: CategoriasService, private http: Http, public dialog: MatDialog) {
   }
@@ -26,25 +27,27 @@ export class CategoriasListComponent implements OnInit {
   }
 
   async fetchListadoCategorias() {
+    this.cargando = true
     this.listado_categorias = await this.categoriaService.solicitarListadoCategorias()
+    this.cargando = false
   }
 
   async crearCategoria() {
-    this.openDialog(new Categoria(),"Crear", CategoriasDetailComponent)
+    this.openDialog(new Categoria(), "Crear", CategoriasDetailComponent)
   }
 
   async editarCategoria(categoria: Categoria) {
-    this.openDialog(Object.assign(new Categoria(), categoria),"Editar", CategoriasDetailComponent)
+    this.openDialog(Object.assign(new Categoria(), categoria), "Editar", CategoriasDetailComponent)
   }
 
   async eliminarCategoria(categoria: Categoria) {
-    this.openDialog(categoria,"Eliminar", CategoriaDeleteConfirmComponent)
+    this.openDialog(categoria, "Eliminar", CategoriaDeleteConfirmComponent)
   }
 
-  openDialog(categoria: Categoria, titulo:String,  component: any): void {
+  openDialog(categoria: Categoria, titulo: String, component: any): void {
     const dialogRef = this.dialog.open(component, {
       width: '25rem',
-      data: {categoria: categoria, titulo: titulo },
+      data: { categoria: categoria, titulo: titulo },
     });
 
     dialogRef.afterClosed().subscribe(async result => {
@@ -71,9 +74,9 @@ export class CategoriasDetailComponent {
   nombreValidator: FormControl = new FormControl('', [Validators.required]);
   descripcionValidator: FormControl = new FormControl('', [Validators.required]);
   isCreate: Boolean
-  
+
   //Guardo las validaciones en un array para no complicarme la vida
-  validaciones:FormControl[] = [
+  validaciones: FormControl[] = [
     this.nombreValidator,
     this.descripcionValidator
   ]
@@ -89,13 +92,13 @@ export class CategoriasDetailComponent {
   constructor(
     private categoriaService: CategoriasService,
     public dialogRef: MatDialogRef<CategoriasDetailComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { 
-      if(!data.categoria.nombre && !data.categoria.descripcion) {
-        this.isCreate = true  
-      } else {
-        this.isCreate = false
-      }
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    if (!data.categoria.nombre && !data.categoria.descripcion) {
+      this.isCreate = true
+    } else {
+      this.isCreate = false
     }
+  }
 
   get categoria() {
     return this.data.categoria
@@ -111,7 +114,7 @@ export class CategoriasDetailComponent {
 
   async aceptar() {
     try {
-      if(this.isCreate) {
+      if (this.isCreate) {
         await this.categoriaService.crearCategoria(this.categoria)
       } else {
         await this.categoriaService.actualizarCategoria(this.categoria)

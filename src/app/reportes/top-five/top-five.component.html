@@ -7,9 +7,13 @@
   </mat-card-content>
   <!-- <img mat-card-image> Card image. Stretches the image to the container width -->
   <mat-card-actions>
-    <button (click)="fetchTop5()" class="mat-button boton-reporte letra-blanca" mat-button cdkFocusInitial>Top 5</button>
+    <button (click)="fetchTop5()" class="mat-button boton-reporte letra-blanca" mat-button cdkFocusInitial>Top
+      5</button>
   </mat-card-actions>
   <!-- <mat-card-footer></mat-card-footer> -->
 </mat-card>
-
-<top-five-list *ngIf="top_five_experiencias" [top_five_experiencias] = "top_five_experiencias" ></top-five-list>
+<div *ngIf="cargando" style="margin: auto;margin-top: 4rem;margin-bottom: 4rem;"
+  class="spinner-border text-primary d-flex justify-content-center" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+<top-five-list *ngIf="top_five_experiencias && !cargando" [top_five_experiencias]="top_five_experiencias"></top-five-list>

@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="!cargando" class="container">
   <h2 class="titulo">Categorías</h2>
   <div class="botones-container row">
     <div class="col" style="text-align: left;">
@@ -33,4 +33,9 @@
       </tbody>
     </table>
   </div>
+</div>
+
+<div *ngIf="cargando" style="margin: auto;margin-top: 4rem;margin-bottom: 4rem;"
+  class="spinner-border text-primary d-flex justify-content-center" role="status">
+  <span class="sr-only">Loading...</span>
 </div>

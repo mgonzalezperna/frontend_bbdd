@@ -10,6 +10,7 @@ import { ReporteService } from 'src/app/services/reporte.service';
 export class TopFiveComponent implements OnInit {
 
   top_five_experiencias: Experiencia[]
+  cargando: boolean = false
 
   constructor(private reporteService: ReporteService) { }
 
@@ -17,7 +18,9 @@ export class TopFiveComponent implements OnInit {
   }
 
   async fetchTop5() {
+    this.cargando = true
     this.top_five_experiencias = await this.reporteService.topFive()
+    this.cargando = false
   }
 
 }
