@@ -43,7 +43,7 @@ export class CategoriasListComponent implements OnInit {
 
   openDialog(categoria: Categoria, titulo:String,  component: any): void {
     const dialogRef = this.dialog.open(component, {
-      width: '15rem',
+      width: '25rem',
       data: {categoria: categoria, titulo: titulo },
     });
 
