@@ -25,8 +25,7 @@ export class ReporteService {
     const json : any = {}
     json.fecha_desde = fecha_desde 
     json.fecha_hasta = fecha_hasta
-    json.idCategoria = idCategoria
-    console.log(json)
+    json.categoria = idCategoria
     const resp = await this.http.post(url, json).toPromise()
     return resp.json().map(ReporteDescargas.fromJson)
  }
