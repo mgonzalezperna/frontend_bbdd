@@ -16,6 +16,10 @@
     text-align: right;
 }
 
+.alinear-izquierda {
+    text-align: left;
+}
+
 .card-reporte {
     text-align: center;
     margin-top: 2rem;

@@ -36,7 +36,7 @@ export class TotalizadorComponent implements OnInit {
 
   irATotalizadorList() {
     console.log(this.fecha_desde)
-    this.router.navigate(['/reportes/totalizador-list', this.fechaDesdeFormateada(),this.fechaHastaFormateada(),this.categoria.idCategoria ]);
+    this.router.navigate(['/totalizador/totalizador-list', this.fechaDesdeFormateada(),this.fechaHastaFormateada(),this.categoria.idCategoria ]);
   }
 
 }
