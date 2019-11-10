@@ -1,8 +1,12 @@
 <div class="container">
   <h2 class="titulo">Categorías</h2>
-  <div class="volver-container alinear-derecha">
-    <button mat-raised-button (click)="crearCategoria()" class="mat-button crear letra-blanca">Crear</button>
-    <button routerLink="/../inicio" mat-raised-button class="mat-button verde letra-blanca">Volver</button>
+  <div class="botones-container row">
+    <div class="col" style="text-align: left;">
+      <button mat-raised-button (click)="crearCategoria()" class="mat-button crear letra-blanca">Crear</button>
+    </div>
+    <div class="col" style="text-align: right;">
+      <button routerLink="/../inicio" mat-raised-button class="mat-button verde letra-blanca">Volver</button>
+    </div>
   </div>
   <div style="text-align: center;" class="card">
     <table class="table">
