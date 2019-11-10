@@ -68,9 +68,8 @@ export class TotalizadorComponent implements OnInit {
     return formatearFecha(this.fecha_hasta)
   }
 
-  irATotalizadorList() {
-    console.log(this.fecha_desde)
-    this.router.navigate(['/totalizador/totalizador-list', this.fechaDesdeFormateada(),this.fechaHastaFormateada(),this.categoria.idCategoria ]);
+  async fetchReportesDescargas() {
+    this.reportes_descargas = await this.reporteService.reporteDescargas(this.fechaDesdeFormateada(), this.fechaHastaFormateada(), this.categoria.idCategoria)
   }
 
 }

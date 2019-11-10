@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="reportes_descargas && reportes_descargas.length > 0 else sinResultados" class="container">
   <h2 class="titulo">Totalizador de descargas</h2>
   <div style="text-align: center;" class="card">
     <table class="table">
@@ -15,9 +15,13 @@
           <td>{{reporte.Titulo}}</td>
           <td>{{reporte.Promedio_puntaje}}</td>
           <td>{{reporte.Velocidad_maxima}}</td>
-          <td>{{reporte.Comentario}}</td>
+          <td>{{reporte.Total_descargas}}</td>
         </tr>
       </tbody>
     </table>
   </div>
-</div>  
+</div>
+
+<ng-template #sinResultados>
+  <h1 class="titulo"><strong>No se encontraron resultados</strong></h1>
+</ng-template>

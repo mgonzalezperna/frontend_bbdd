@@ -36,7 +36,8 @@
 
     <!-- <img mat-card-image> Card image. Stretches the image to the container width -->
     <mat-card-actions>
-        <button class="mat-button boton-reporte letra-blanca" mat-button (click)="irATotalizadorList()">Totalizador</button>
+        <button class="mat-button boton-reporte letra-blanca" mat-button (click)="fetchReportesDescargas()"
+            [disabled]="cantSubmit()">Totalizador</button>
     </mat-card-actions>
     <mat-error *ngIf="false">{{errorMsgFechaHasta}}</mat-error>
     <mat-card-footer>
@@ -46,3 +47,5 @@
     </mat-card-footer>
 
 </mat-card>
+
+<totalizador-list *ngIf="reportes_descargas" [reportes_descargas]="reportes_descargas"> </totalizador-list>

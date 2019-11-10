@@ -11,12 +11,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio', component: MainMenuComponent },
   { path: 'categorias', component: CategoriasListComponent },
-  { path: 'top-5', component: ReportesComponent, data : { mode : 'top-5' }, children: [
-    { path: 'top-5-list', component: TopFiveListComponent },
-  ] },
-  { path: 'totalizador', component: ReportesComponent, data : { mode : 'totalizador' }, children: [
-    { path: 'totalizador-list/:fecha_desde/:fecha_hasta/:idCategoria', component: TotalizadorListComponent },
-  ] },
+  { path: 'top-5', component: ReportesComponent, data: { mode: 'top-5' } },
+  { path: 'totalizador', component: ReportesComponent, data: { mode: 'totalizador' } },
 ];
 
 @NgModule({
@@ -31,6 +27,6 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 //buena práctica según el indio:
-export const routingComponents = [MainMenuComponent, 
+export const routingComponents = [MainMenuComponent,
   CategoriasListComponent,
 ]

@@ -7,8 +7,9 @@
   </mat-card-content>
   <!-- <img mat-card-image> Card image. Stretches the image to the container width -->
   <mat-card-actions>
-    <button routerLink="/top-5/top-5-list" class="mat-button boton-reporte letra-blanca" mat-button cdkFocusInitial>Top
-      5</button>
+    <button (click)="fetchTop5()" class="mat-button boton-reporte letra-blanca" mat-button cdkFocusInitial>Top 5</button>
   </mat-card-actions>
   <!-- <mat-card-footer></mat-card-footer> -->
 </mat-card>
+
+<top-five-list *ngIf="top_five_experiencias" [top_five_experiencias] = "top_five_experiencias" ></top-five-list>
