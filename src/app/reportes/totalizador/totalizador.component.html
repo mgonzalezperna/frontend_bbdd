@@ -1,54 +1,61 @@
-<mat-card class="card-reporte">
-    <mat-card-title style="margin-bottom:2rem;">
-        <h5><strong>Cantidad de descargas</strong></h5>
-    </mat-card-title>
-    <!-- <mat-card-subtitle> Card subtitle</mat-card-subtitle> -->
-    <mat-card-content>
-        <form class="row">
-            <mat-form-field class="example-full-width fecha">
-                <input matInput [(ngModel)]='fecha_desde' [matDatepicker]="fecha_desde_picker"
-                    [formControl]='fechaDesdeValidator' placeholder="desde">
-                <mat-error *ngIf="fechaDesdeValidator">{{errorMsgFechaDesde}}</mat-error>
-                <mat-datepicker-toggle matSuffix [for]="fecha_desde_picker">
-                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-                </mat-datepicker-toggle>
-                <mat-datepicker #fecha_desde_picker></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field class="example-full-width fecha">
-                <input matInput [(ngModel)]='fecha_hasta' [matDatepicker]="fecha_hasta_picker"
-                    [formControl]='fechaHastaValidator' placeholder="hasta">
-                <mat-error *ngIf="fechaHastaValidator">{{errorMsgFechaHasta}}</mat-error>
-                <mat-datepicker-toggle matSuffix [for]="fecha_hasta_picker">
-                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-                </mat-datepicker-toggle>
-                <mat-datepicker #fecha_hasta_picker></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Categoría</mat-label>
-                <mat-select name="categoria" [(ngModel)]="categoria" [formControl]='categoriaValidator'>
-                    <mat-option *ngFor="let categoria of listado_categorias" [value]="categoria">
-                        {{categoria.nombre}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </form>
-    </mat-card-content>
+<div *ngIf="!cargando">
+    <mat-card class="card-reporte">
+        <mat-card-title style="margin-bottom:2rem;">
+            <h5><strong>Cantidad de descargas</strong></h5>
+        </mat-card-title>
+        <!-- <mat-card-subtitle> Card subtitle</mat-card-subtitle> -->
+        <mat-card-content>
+            <form class="row">
+                <mat-form-field class="example-full-width fecha">
+                    <input matInput [(ngModel)]='fecha_desde' [matDatepicker]="fecha_desde_picker"
+                        [formControl]='fechaDesdeValidator' placeholder="desde">
+                    <mat-error *ngIf="fechaDesdeValidator">{{errorMsgFechaDesde}}</mat-error>
+                    <mat-datepicker-toggle matSuffix [for]="fecha_desde_picker">
+                        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #fecha_desde_picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="example-full-width fecha">
+                    <input matInput [(ngModel)]='fecha_hasta' [matDatepicker]="fecha_hasta_picker"
+                        [formControl]='fechaHastaValidator' placeholder="hasta">
+                    <mat-error *ngIf="fechaHastaValidator">{{errorMsgFechaHasta}}</mat-error>
+                    <mat-datepicker-toggle matSuffix [for]="fecha_hasta_picker">
+                        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #fecha_hasta_picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Categoría</mat-label>
+                    <mat-select name="categoria" [(ngModel)]="categoria" [formControl]='categoriaValidator'>
+                        <mat-option *ngFor="let categoria of listado_categorias" [value]="categoria">
+                            {{categoria.nombre}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
 
-    <!-- <img mat-card-image> Card image. Stretches the image to the container width -->
-    <mat-card-actions>
-        <button class="mat-button boton-reporte letra-blanca" mat-button (click)="fetchReportesDescargas()"
-            [disabled]="cantSubmit()">Totalizador</button>
-    </mat-card-actions>
-    <mat-error *ngIf="false">{{errorMsgFechaHasta}}</mat-error>
-    <mat-card-footer>
-        <div style="height: 2rem;margin-top: 1.5rem;margin-bottom: 1rem;">
-            <mat-error *ngIf="error">{{error}}</mat-error>
-        </div>
-    </mat-card-footer>
+        <!-- <img mat-card-image> Card image. Stretches the image to the container width -->
+        <mat-card-actions>
+            <button class="mat-button boton-reporte letra-blanca" mat-button (click)="fetchReportesDescargas()"
+                [disabled]="cantSubmit()">Totalizador</button>
+        </mat-card-actions>
+        <mat-error *ngIf="false">{{errorMsgFechaHasta}}</mat-error>
+        <mat-card-footer>
+            <div style="height: 2rem;margin-top: 1.5rem;margin-bottom: 1rem;">
+                <mat-error *ngIf="fechaDesdeMayorAFechaHastaError">{{fechaDesdeMayorAFechaHastaError}}</mat-error>
+            </div>
+        </mat-card-footer>
 
-</mat-card>
-<div *ngIf="cargando" style="margin: auto;margin-top: 4rem;margin-bottom: 4rem;"
-    class="spinner-border text-primary d-flex justify-content-center" role="status">
-    <span class="sr-only">Loading...</span>
+    </mat-card>
+    <totalizador-list *ngIf="reportes_descargas && !cargando_reporte && !server_error" [reportes_descargas]="reportes_descargas">
+    </totalizador-list>
 </div>
-<totalizador-list *ngIf="reportes_descargas && !cargando" [reportes_descargas]="reportes_descargas"> </totalizador-list>
+
+<div class="loading">
+    <div style="margin:auto;" *ngIf="cargando ||cargando_reporte" class="spinner-border text-primary d-flex justify-content-center"
+        role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <mat-error *ngIf="server_error">{{server_error}}</mat-error>
+</div>

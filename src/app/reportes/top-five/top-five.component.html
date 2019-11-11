@@ -12,8 +12,12 @@
   </mat-card-actions>
   <!-- <mat-card-footer></mat-card-footer> -->
 </mat-card>
-<div *ngIf="cargando" style="margin: auto;margin-top: 4rem;margin-bottom: 4rem;"
-  class="spinner-border text-primary d-flex justify-content-center" role="status">
-  <span class="sr-only">Loading...</span>
+<div class="loading">
+  <div style="margin:auto;" *ngIf="cargando" class="spinner-border text-primary d-flex justify-content-center"
+    role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <mat-error *ngIf="server_error">{{server_error}}</mat-error>
 </div>
-<top-five-list *ngIf="top_five_experiencias && !cargando" [top_five_experiencias]="top_five_experiencias"></top-five-list>
+<top-five-list *ngIf="top_five_experiencias && !cargando" [top_five_experiencias]="top_five_experiencias">
+</top-five-list>

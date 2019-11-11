@@ -14,21 +14,24 @@ import { Validators, FormControl } from '@angular/forms';
 export class CategoriasListComponent implements OnInit {
   listado_categorias: Categoria[]
   cargando: boolean = false
+  server_error: String = ""
 
   constructor(private categoriaService: CategoriasService, private http: Http, public dialog: MatDialog) {
   }
 
   async ngOnInit() {
-    try {
-      await this.fetchListadoCategorias()
-    } catch (error) {
-      console.log(error) // mostrar errores
-    }
+    await this.fetchListadoCategorias()
   }
 
   async fetchListadoCategorias() {
+    this.server_error = ""
     this.cargando = true
-    this.listado_categorias = await this.categoriaService.solicitarListadoCategorias()
+    try {
+      this.listado_categorias = await this.categoriaService.solicitarListadoCategorias()
+    } catch (error) {
+      this.server_error = error
+      console.log(error) // mostrar errores
+    }
     this.cargando = false
   }
 
@@ -53,11 +56,7 @@ export class CategoriasListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async result => {
       console.log('The dialog was closed');
       if (result) {
-        try {
-          await this.fetchListadoCategorias()
-        } catch (error) {
-          console.log(error) //mostrar errores
-        }
+        await this.fetchListadoCategorias()
       }
     });
   }
@@ -74,12 +73,8 @@ export class CategoriasDetailComponent {
   nombreValidator: FormControl = new FormControl('', [Validators.required]);
   descripcionValidator: FormControl = new FormControl('', [Validators.required]);
   isCreate: Boolean
-
-  //Guardo las validaciones en un array para no complicarme la vida
-  validaciones: FormControl[] = [
-    this.nombreValidator,
-    this.descripcionValidator
-  ]
+  server_error: String = ""
+  cargando: boolean = false
 
   get errorMsgNombre() {
     return this.nombreValidator.hasError('required') ? "Debe ingresar nombre" : ''
@@ -113,6 +108,8 @@ export class CategoriasDetailComponent {
   }
 
   async aceptar() {
+    this.server_error = ""
+    this.cargando = true
     try {
       if (this.isCreate) {
         await this.categoriaService.crearCategoria(this.categoria)
@@ -121,8 +118,10 @@ export class CategoriasDetailComponent {
       }
       this.dialogRef.close("true")
     } catch (error) {
+      this.server_error = error
       console.log(error) //mostrar errores
     }
+    this.cargando = false
   }
 
   noCompletoFormulario() {
@@ -136,6 +135,9 @@ export class CategoriasDetailComponent {
   styleUrls: ['./categorias-list.component.css']
 })
 export class CategoriaDeleteConfirmComponent {
+
+  server_error: String = ""
+  cargando: boolean = false
 
   constructor(
     private categoriaService: CategoriasService,
@@ -151,12 +153,16 @@ export class CategoriaDeleteConfirmComponent {
   }
 
   async eliminar() {
+    this.server_error = ""
+    this.cargando = true
     try {
       await this.categoriaService.eliminar(this.categoria)
       this.dialogRef.close("true")
     } catch (error) {
+      this.server_error = error
       console.log(error) //mostrar errores
     }
+    this.cargando = false
   }
 
 }

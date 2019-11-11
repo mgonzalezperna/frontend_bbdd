@@ -6,6 +6,13 @@
 </div>
 <div align="center" mat-dialog-actions>
     <button class="mat-button" mat-raised-button (click)="onNoClick()">Cancelar</button>
-    <button class="mat-button rojo letra-blanca" mat-button (click)="eliminar()" 
-        cdkFocusInitial>Eliminar</button>
+    <button class="mat-button rojo letra-blanca" mat-button (click)="eliminar()" cdkFocusInitial>Eliminar</button>
+</div>
+
+<div *ngIf="cargando || server_error" style="margin-top: 3rem;">
+    <div style="margin:auto;" *ngIf="cargando" class="spinner-border text-primary d-flex justify-content-center"
+        role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <mat-error style="font-size: 3rem;">{{server_error}}</mat-error>
 </div>

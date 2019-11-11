@@ -11,6 +11,7 @@ export class TopFiveComponent implements OnInit {
 
   top_five_experiencias: Experiencia[]
   cargando: boolean = false
+  server_error: String = ""
 
   constructor(private reporteService: ReporteService) { }
 
@@ -18,8 +19,14 @@ export class TopFiveComponent implements OnInit {
   }
 
   async fetchTop5() {
+    this.server_error = ""
     this.cargando = true
-    this.top_five_experiencias = await this.reporteService.topFive()
+    try {
+      this.top_five_experiencias = await this.reporteService.topFive()
+    } catch (error) {
+      this.server_error = error
+      console.log(error)
+    }
     this.cargando = false
   }
 

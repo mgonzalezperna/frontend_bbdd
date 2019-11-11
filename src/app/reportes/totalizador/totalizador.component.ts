@@ -22,10 +22,12 @@ export class TotalizadorComponent implements OnInit {
   server_error: String = ""
   reportes_descargas: ReporteDescargas[]
   cargando: boolean = false
+  cargando_reporte: boolean = false
 
   constructor(private categoriaService: CategoriasService, private reporteService: ReporteService) { }
 
   async ngOnInit() {
+    this.cargando = true
     try {
       this.listado_categorias = await this.categoriaService.solicitarListadoCategorias()
       this.listado_categorias.push(new Categoria("", "Todos"))
@@ -34,10 +36,7 @@ export class TotalizadorComponent implements OnInit {
       this.server_error = error
       console.log(error) // mostrar errores
     }
-  }
-
-  get error() {
-    return this.fechaDesdeMayorAFechaHastaError ? this.fechaDesdeMayorAFechaHastaError : this.server_error
+    this.cargando = false
   }
 
   get fechaDesdeMayorAFechaHastaError() {
@@ -69,9 +68,9 @@ export class TotalizadorComponent implements OnInit {
   }
 
   async fetchReportesDescargas() {
-    this.cargando = true
+    this.cargando_reporte = true
     this.reportes_descargas = await this.reporteService.reporteDescargas(this.fechaDesdeFormateada(), this.fechaHastaFormateada(), this.categoria.idCategoria)
-    this.cargando = false
+    this.cargando_reporte = false
   }
 
 }

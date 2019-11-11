@@ -18,31 +18,10 @@
     [disabled]="noCompletoFormulario()" cdkFocusInitial>Aplicar</button>
 </div>
 
-
-
-<!-- <mat-divider class='divider'></mat-divider>
-
-<mat-form-field>
-  <input class='input' matInput type="number" class="form-control" placeholder="Edad Minima" [(ngModel)]='edadMinima' [formControl]='edadMinimaValidator'>
-  <mat-error *ngIf="edadMinimaValidator">{{getErrorMsgEdadMinima()}}</mat-error>
-</mat-form-field>
-
-<mat-divider class='divider' [vertical]="true" [inset]="true" ></mat-divider>
-
-<mat-form-field>
-  <input class='input' matInput type="number" class="form-control" placeholder="Precio entrada" [(ngModel)]='precioEntrada' [formControl]='precioEntradaValidator'>
-  <mat-error *ngIf="precioEntradaValidator">{{getErrorMsgPrecioEntrada()}}</mat-error>
-</mat-form-field>
-
-<mat-divider class='divider'></mat-divider>
-
-<button mat-button (click)='submit()' [disabled]="canAccept()">Aceptar</button>
-<button mat-button (click)='return()'>Cancelar</button>
-
-<mat-list>
-  <mat-list-item *ngFor="let error of errores">
-    <mat-icon mat-list-icon color="warn">error</mat-icon>
-    <h4 mat-line >Error!</h4>
-    <p mat-line > {{error}} </p>
-  </mat-list-item>
-</mat-list> -->
+<div *ngIf="cargando ||server_error" style="margin-top: 3rem;">
+  <div style="margin:auto;" *ngIf="cargando" class="spinner-border text-primary d-flex justify-content-center"
+    role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <mat-error style="font-size: 3rem;">{{server_error}}</mat-error>
+</div>

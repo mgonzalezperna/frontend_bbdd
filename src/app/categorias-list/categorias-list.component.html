@@ -1,4 +1,4 @@
-<div *ngIf="!cargando" class="container">
+<div *ngIf="!cargando && !server_error" class="container">
   <h2 class="titulo">Categorías</h2>
   <div class="botones-container row">
     <div class="col" style="text-align: left;">
@@ -35,7 +35,14 @@
   </div>
 </div>
 
-<div *ngIf="cargando" style="margin: auto;margin-top: 4rem;margin-bottom: 4rem;"
-  class="spinner-border text-primary d-flex justify-content-center" role="status">
-  <span class="sr-only">Loading...</span>
+<div class="loading">
+  <div style="margin:auto;" *ngIf="cargando" class="spinner-border text-primary d-flex justify-content-center"
+    role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <mat-error style="font-size: 3rem;" *ngIf="server_error">{{server_error}}</mat-error>
+</div>
+
+<div *ngIf="server_error" class="col" style="text-align: center;">
+  <button routerLink="/../inicio" mat-raised-button class="mat-button verde letra-blanca">Volver</button>
 </div>
