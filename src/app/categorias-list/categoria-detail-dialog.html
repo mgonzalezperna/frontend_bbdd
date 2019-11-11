@@ -14,8 +14,8 @@
 </div>
 <div align="center" mat-dialog-actions>
   <button class="mat-button rojo letra-blanca" mat-raised-button (click)="onNoClick()">Cancelar</button>
-  <button class="mat-button verde letra-blanca" mat-raised-button (click)="aceptar()"
-    [disabled]="cantSubmit()" cdkFocusInitial>{{submitButtonText}}</button>
+  <button class="mat-button verde letra-blanca" mat-raised-button (click)="aceptar()" [disabled]="cantSubmit()"
+    cdkFocusInitial>{{submitButtonText}}</button>
 </div>
 
 <div *ngIf="cargando ||server_error" style="margin-top: 3rem;">
@@ -23,5 +23,7 @@
     role="status">
     <span class="sr-only">Loading...</span>
   </div>
-  <mat-error style="font-size: 3rem;">{{server_error}}</mat-error>
+  <div class="card">
+    <mat-error>{{server_error}}</mat-error>
+  </div>
 </div>

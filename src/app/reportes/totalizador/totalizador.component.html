@@ -44,7 +44,9 @@
         <mat-error *ngIf="false">{{errorMsgFechaHasta}}</mat-error>
         <mat-card-footer>
             <div style="height: 2rem;margin-top: 1.5rem;margin-bottom: 1rem;">
-                <mat-error *ngIf="fechaDesdeMayorAFechaHastaError">{{fechaDesdeMayorAFechaHastaError}}</mat-error>
+                <div *ngIf="fechaDesdeMayorAFechaHastaError" class="card">
+                    <mat-error>{{fechaDesdeMayorAFechaHastaError}}</mat-error>
+                </div>
             </div>
         </mat-card-footer>
 
