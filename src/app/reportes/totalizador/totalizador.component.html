@@ -27,6 +27,7 @@
                 <mat-form-field>
                     <mat-label>Categoría</mat-label>
                     <mat-select name="categoria" [(ngModel)]="categoria" [formControl]='categoriaValidator'>
+                        <mat-option [value]=categoriaTodos>{{categoriaTodos.nombre}}</mat-option>
                         <mat-option *ngFor="let categoria of listado_categorias" [value]="categoria">
                             {{categoria.nombre}}
                         </mat-option>
@@ -48,13 +49,14 @@
         </mat-card-footer>
 
     </mat-card>
-    <totalizador-list *ngIf="reportes_descargas && !cargando_reporte && !server_error" [reportes_descargas]="reportes_descargas">
+    <totalizador-list *ngIf="reportes_descargas && !cargando_reporte && !server_error"
+        [reportes_descargas]="reportes_descargas">
     </totalizador-list>
 </div>
 
 <div class="loading">
-    <div style="margin:auto;" *ngIf="cargando ||cargando_reporte" class="spinner-border text-primary d-flex justify-content-center"
-        role="status">
+    <div style="margin:auto;" *ngIf="cargando ||cargando_reporte"
+        class="spinner-border text-primary d-flex justify-content-center" role="status">
         <span class="sr-only">Loading...</span>
     </div>
     <mat-error *ngIf="server_error">{{server_error}}</mat-error>

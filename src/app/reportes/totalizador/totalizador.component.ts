@@ -16,6 +16,7 @@ export class TotalizadorComponent implements OnInit {
   fecha_hasta: Date
   listado_categorias: Categoria[]
   categoria: Categoria
+  categoriaTodos: Categoria
   fechaDesdeValidator: FormControl = new FormControl('', [Validators.required]);
   fechaHastaValidator: FormControl = new FormControl('', [Validators.required]);
   categoriaValidator: FormControl = new FormControl('', [Validators.required]);
@@ -27,6 +28,8 @@ export class TotalizadorComponent implements OnInit {
   constructor(private categoriaService: CategoriasService, private reporteService: ReporteService) { }
 
   async ngOnInit() {
+    this.categoriaTodos = new Categoria("", "Todos")
+    this.categoria = this.categoriaTodos
     this.cargando = true
     try {
       this.listado_categorias = await this.categoriaService.solicitarListadoCategorias()
