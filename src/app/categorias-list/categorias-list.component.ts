@@ -75,6 +75,7 @@ export class CategoriasDetailComponent {
   isCreate: Boolean
   server_error: String = ""
   cargando: boolean = false
+  categoria: Categoria
 
   get errorMsgNombre() {
     return this.nombreValidator.hasError('required') ? "Debe ingresar nombre" : ''
@@ -88,15 +89,12 @@ export class CategoriasDetailComponent {
     private categoriaService: CategoriasService,
     public dialogRef: MatDialogRef<CategoriasDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.categoria = Object.assign(new Categoria(), this.data.categoria)
     if (!data.categoria.nombre && !data.categoria.descripcion) {
       this.isCreate = true
     } else {
       this.isCreate = false
     }
-  }
-
-  get categoria() {
-    return this.data.categoria
   }
 
   get titulo() {
@@ -124,8 +122,8 @@ export class CategoriasDetailComponent {
     this.cargando = false
   }
 
-  noCompletoFormulario() {
-    return !this.categoria.nombre || !this.categoria.descripcion
+  cantSubmit() {
+    return !this.categoria.nombre || !this.categoria.descripcion || (this.categoria.nombre == this.data.categoria.nombre && this.categoria.descripcion == this.data.categoria.descripcion)
   }
 
 }
