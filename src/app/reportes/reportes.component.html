@@ -1,14 +1,14 @@
 <div class="container">
   <h2 class="titulo">Reportes</h2>
-  <div *ngIf="[mode]=='top-5'; then thenBlock else elseBlock"></div>
-    <ng-template #thenBlock>
-      <top-five></top-five>
-    </ng-template>
-    <ng-template #elseBlock>
-      <totalizador></totalizador>
-    </ng-template>
-  <router-outlet></router-outlet>
-  <div class="volver-container alinear-derecha">
+  <div class="alinear-derecha">
     <button routerLink="/../inicio" mat-raised-button class="mat-button volver letra-blanca">Volver</button>
   </div>
+  <div *ngIf="[mode]=='top-5'; then thenBlock else elseBlock"></div>
+  <ng-template #thenBlock>
+    <top-five></top-five>
+  </ng-template>
+  <ng-template #elseBlock>
+    <totalizador></totalizador>
+  </ng-template>
+  <router-outlet></router-outlet>
 </div>

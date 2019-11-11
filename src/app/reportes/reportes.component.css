@@ -2,6 +2,7 @@
     font-weight: bold;
     text-align: center;
     margin-top: 3rem;
+    margin-bottom: 2rem;
 }
 
 .boton-reporte {
@@ -22,7 +23,7 @@
 
 .card-reporte {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 0.5rem;
 }
 
 .container {
@@ -33,12 +34,7 @@
     margin-right: 2rem;
 }
 
-.volver-container {
-    text-align: center;
-    margin-top: 3rem;
-}
 
 .volver {
     background-color: #00C851;
-    margin-bottom:2rem;
 }
