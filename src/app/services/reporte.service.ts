@@ -20,8 +20,17 @@ export class ReporteService {
     return resp.json().map(Experiencia.fromJson)
   }
 
-  async reporteDescargas(fecha_desde: String, fecha_hasta: String, idCategoria: String) {
+  async reporteDescargasSinCategoria(fecha_desde: String, fecha_hasta: String) {
     const url = API_URL + "/cantidad-descargas"
+    const json : any = {}
+    json.fecha_desde = fecha_desde 
+    json.fecha_hasta = fecha_hasta
+    const resp = await this.http.post(url, json).toPromise()
+    return resp.json().map(ReporteDescargas.fromJson)
+ }
+
+  async reporteDescargasConCategoria(fecha_desde: String, fecha_hasta: String, idCategoria: String) {
+    const url = API_URL + "/cantidad-descargas-categoria"
     const json : any = {}
     json.fecha_desde = fecha_desde 
     json.fecha_hasta = fecha_hasta

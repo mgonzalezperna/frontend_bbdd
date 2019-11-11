@@ -72,7 +72,11 @@ export class TotalizadorComponent implements OnInit {
 
   async fetchReportesDescargas() {
     this.cargando_reporte = true
-    this.reportes_descargas = await this.reporteService.reporteDescargas(this.fechaDesdeFormateada(), this.fechaHastaFormateada(), this.categoria.idCategoria)
+    if (this.categoria.nombre == "Todos") {
+      this.reportes_descargas = await this.reporteService.reporteDescargasSinCategoria(this.fechaDesdeFormateada(), this.fechaHastaFormateada())
+    } else {
+      this.reportes_descargas = await this.reporteService.reporteDescargasConCategoria(this.fechaDesdeFormateada(), this.fechaHastaFormateada(), this.categoria.idCategoria)
+    }
     this.cargando_reporte = false
   }
 
