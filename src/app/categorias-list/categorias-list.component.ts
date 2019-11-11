@@ -36,21 +36,21 @@ export class CategoriasListComponent implements OnInit {
   }
 
   async crearCategoria() {
-    this.openDialog(new Categoria(), "Crear", CategoriasDetailComponent)
+    this.openDialog(new Categoria(), "Crear", "Crear", CategoriasDetailComponent)
   }
 
   async editarCategoria(categoria: Categoria) {
-    this.openDialog(Object.assign(new Categoria(), categoria), "Editar", CategoriasDetailComponent)
+    this.openDialog(Object.assign(new Categoria(), categoria), "Editar", "Aplicar", CategoriasDetailComponent)
   }
 
   async eliminarCategoria(categoria: Categoria) {
-    this.openDialog(categoria, "Eliminar", CategoriaDeleteConfirmComponent)
+    this.openDialog(categoria, "Eliminar", "Eliminar", CategoriaDeleteConfirmComponent)
   }
 
-  openDialog(categoria: Categoria, titulo: String, component: any): void {
+  openDialog(categoria: Categoria, titulo: String, submitButtonText: String, component: any): void {
     const dialogRef = this.dialog.open(component, {
       width: '25rem',
-      data: { categoria: categoria, titulo: titulo },
+      data: { categoria: categoria, titulo: titulo, submitButtonText: submitButtonText },
     });
 
     dialogRef.afterClosed().subscribe(async result => {
@@ -99,6 +99,10 @@ export class CategoriasDetailComponent {
 
   get titulo() {
     return this.data.titulo
+  }
+
+  get submitButtonText() {
+    return this.data.submitButtonText
   }
 
   onNoClick(): void {

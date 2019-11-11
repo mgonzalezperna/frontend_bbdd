@@ -15,7 +15,7 @@
 <div align="center" mat-dialog-actions>
   <button class="mat-button rojo letra-blanca" mat-raised-button (click)="onNoClick()">Cancelar</button>
   <button class="mat-button verde letra-blanca" mat-raised-button (click)="aceptar()"
-    [disabled]="cantSubmit()" cdkFocusInitial>Aplicar</button>
+    [disabled]="cantSubmit()" cdkFocusInitial>{{submitButtonText}}</button>
 </div>
 
 <div *ngIf="cargando ||server_error" style="margin-top: 3rem;">
