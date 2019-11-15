@@ -1,21 +1,26 @@
 <div class="container">
   <h2 class="titulo">Top 5 de experiencia</h2>
-  <div style="text-align: center;" class="card">
-    <table class="table table-responsive">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Título</th>
-          <th scope="col">Puntaje</th>
-          <th scope="col">Comentario</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let experiencia of top_five_experiencias">
-          <td>{{experiencia.Titulo}}</td>
-          <td>{{experiencia.Puntaje}}</td>
-          <td>{{experiencia.Comentario}}</td>
-        </tr>
-      </tbody>
+    <table mat-table [dataSource]="experiencias" matSort class="mat-elevation-z8">
+
+      <ng-container matColumnDef="titulo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Título </th>
+        <td mat-cell *matCellDef="let experiencia"> {{experiencia.Titulo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="puntaje">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Puntaje </th>
+        <td mat-cell *matCellDef="let experiencia"> {{experiencia.Puntaje}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="comentario">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Comentario </th>
+        <td mat-cell *matCellDef="let experiencia"> {{experiencia.Comentario}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayed_columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayed_columns;"></tr>
     </table>
-  </div>
-</div>  
+</div>
+
+
+

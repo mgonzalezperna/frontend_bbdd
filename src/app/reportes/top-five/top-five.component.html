@@ -7,8 +7,9 @@
   </mat-card-content>
   <!-- <img mat-card-image> Card image. Stretches the image to the container width -->
   <mat-card-actions>
-    <button (click)="fetchTop5()" class="mat-button boton-reporte letra-blanca" mat-button cdkFocusInitial>Top
-      5</button>
+    <button (click)="fetchTop5()" class="mat-button boton-reporte letra-blanca" mat-button cdkFocusInitial>
+      Consultar
+    </button>
   </mat-card-actions>
   <!-- <mat-card-footer></mat-card-footer> -->
 </mat-card>
@@ -19,5 +20,5 @@
   </div>
   <mat-error *ngIf="server_error">{{server_error}}</mat-error>
 </div>
-<top-five-list *ngIf="top_five_experiencias && !cargando" [top_five_experiencias]="top_five_experiencias">
+<top-five-list [top_five_experiencias]="top_five_experiencias">
 </top-five-list>

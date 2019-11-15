@@ -1,26 +1,31 @@
 <div *ngIf="reportes_descargas && reportes_descargas.length > 0 else sinResultados" class="container">
   <h2 class="titulo">Totalizador de descargas</h2>
-  <div style="text-align: center;" class="card">
-    <table class="table table-responsive">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Archivo</th>
-          <th scope="col">Puntaje</th>
-          <th scope="col">Velocidad promedio</th>
-          <th scope="col">Total de descargas</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let reporte of reportes_descargas">
-          <td>{{reporte.Titulo}}</td>
-          <td>{{reporte.Promedio_puntaje}}</td>
-          <td>{{reporte.Velocidad_maxima}}</td>
-          <td>{{reporte.Total_descargas}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+
+  <table mat-table [dataSource]="reportes_descargas" matSort class="mat-elevation-z8">
+
+    <ng-container matColumnDef="archivo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Archivo </th>
+      <td mat-cell *matCellDef="let reporte"> {{reporte.Titulo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="puntaje">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Puntaje </th>
+      <td mat-cell *matCellDef="let reporte"> {{reporte.Promedio_puntaje}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="velocidad">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Velocidad promedio </th>
+      <td mat-cell *matCellDef="let reporte"> {{reporte.Velocidad_maxima}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Total de descargas </th>
+      <td mat-cell *matCellDef="let reporte"> {{reporte.Total_descargas}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayed_columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayed_columns;"></tr>
+  </table>
 
 <ng-template #sinResultados>
   <h1 class="titulo"><strong>No se encontraron resultados</strong></h1>

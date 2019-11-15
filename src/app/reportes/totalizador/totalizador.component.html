@@ -39,7 +39,9 @@
         <!-- <img mat-card-image> Card image. Stretches the image to the container width -->
         <mat-card-actions>
             <button class="mat-button boton-reporte letra-blanca" mat-button (click)="fetchReportesDescargas()"
-                [disabled]="cantSubmit()">Totalizador</button>
+            [disabled]="cantSubmit()">
+                Consultar
+            </button>
         </mat-card-actions>
         <mat-error *ngIf="false">{{errorMsgFechaHasta}}</mat-error>
         <mat-card-footer>
