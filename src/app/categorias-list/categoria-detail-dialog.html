@@ -6,8 +6,8 @@
       <mat-error *ngIf="nombreValidator">{{errorMsgNombre}}</mat-error>
     </mat-form-field>
     <mat-form-field class="full-width" style="margin-bottom:0.5rem">
-      <input placeholder="Descripción Categoria" [formControl]='descripcionValidator' matInput
-        [(ngModel)]="categoria.descripcion">
+      <textarea placeholder="Descripción Categoria" rows=4 [formControl]='descripcionValidator' matInput
+        [(ngModel)]="categoria.descripcion"></textarea>
       <mat-error *ngIf="descripcionValidator">{{errorMsgDescripcion}}</mat-error>
     </mat-form-field>
   </form>
