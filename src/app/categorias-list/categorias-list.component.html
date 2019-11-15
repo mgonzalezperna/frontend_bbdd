@@ -1,4 +1,4 @@
-<div *ngIf="!cargando && !server_error" class="container">
+<div class="container">
   <h2 class="titulo">Categorías</h2>
   <div class="botones-container row">
     <div class="col" style="text-align: left;">
@@ -8,31 +8,36 @@
       <button routerLink="/../inicio" mat-raised-button class="mat-button verde letra-blanca">Volver</button>
     </div>
   </div>
-  <div style="text-align: center;" class="card">
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Nombre</th>
-          <th scope="col">Descripción</th>
-          <th scope="col">Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let categoria of listado_categorias">
-          <td>{{categoria.nombre}}</td>
-          <td>{{categoria.descripcion}}</td>
-          <td>
-            <button mat-icon-button (click)="editarCategoria(categoria)" class="mat-flat-button">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button (click)="eliminarCategoria(categoria)" class="mat-flat-button">
-              <mat-icon class=red-icon>close</mat-icon>
-            </button>
-          </td>
-        </tr>
-      </tbody>
+  
+    <table mat-table [dataSource]="listado_categorias" matSort matSortActive="nombre" matSortDirection="asc" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+        <td mat-cell *matCellDef="let categoria"> {{categoria.nombre}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="descripcion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
+        <td mat-cell *matCellDef="let categoria"> {{categoria.descripcion}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </th>
+        <td mat-cell *matCellDef="let categoria"> 
+          <button mat-icon-button (click)="editarCategoria(categoria)" class="mat-flat-button">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="eliminarCategoria(categoria)" class="mat-flat-button">
+            <mat-icon class=red-icon>close</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayed_columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayed_columns;"></tr>
     </table>
-  </div>
+
+  
 </div>
 
 <div class="loading">

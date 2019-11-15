@@ -1,9 +1,10 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { Categoria } from "../domain/Categoria";
 import { CategoriasService } from "../services/categoria.service";
 import { Http } from '@angular/http';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Validators, FormControl } from '@angular/forms';
+import { MatSort, MatTableDataSource } from '@angular/material';
 
 
 @Component({
@@ -12,22 +13,27 @@ import { Validators, FormControl } from '@angular/forms';
   styleUrls: ['./categorias-list.component.css']
 })
 export class CategoriasListComponent implements OnInit {
-  listado_categorias: Categoria[]
+  categorias: Categoria[]
   cargando: boolean = false
   server_error: String = ""
+  displayed_columns: String[] = ['nombre', 'descripcion', 'acciones']
+  listado_categorias:MatTableDataSource<Categoria>
 
-  constructor(private categoriaService: CategoriasService, private http: Http, public dialog: MatDialog) {
-  }
+  @ViewChild(MatSort) sort: MatSort;
+
+  constructor(private categoriaService: CategoriasService, private http: Http, public dialog: MatDialog) {}
 
   async ngOnInit() {
     await this.fetchListadoCategorias()
+    this.listado_categorias = new MatTableDataSource(this.categorias)
+    this.listado_categorias.sort = this.sort;
   }
 
   async fetchListadoCategorias() {
     this.server_error = ""
     this.cargando = true
     try {
-      this.listado_categorias = await this.categoriaService.solicitarListadoCategorias()
+      this.categorias = await this.categoriaService.solicitarListadoCategorias()
     } catch (error) {
       this.server_error = error
       console.log(error) // mostrar errores
@@ -56,7 +62,8 @@ export class CategoriasListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async result => {
       console.log('The dialog was closed');
       if (result) {
-        await this.fetchListadoCategorias()
+        await this.ngOnInit()
+
       }
     });
   }

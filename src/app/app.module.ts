@@ -27,7 +27,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker'
-import { MatNativeDateModule, MAT_DATE_LOCALE, MatDialogModule }  from '@angular/material'
+import { MatNativeDateModule, MAT_DATE_LOCALE, MatDialogModule, MatSortModule }  from '@angular/material'
 
 import { AppRoutingModule, routingComponents } from "./app-routing/app-routing.module";
 import { MainMenuComponent } from './main-menu/main-menu.component';
@@ -70,6 +70,8 @@ export default function imports_list() {
     MatDividerModule,
     MatSnackBarModule,
     MatGridListModule,
+    MatTableModule,
+    MatSortModule,
   ]
   return (imports)
 }
