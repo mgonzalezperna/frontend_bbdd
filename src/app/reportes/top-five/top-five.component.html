@@ -20,5 +20,5 @@
   </div>
   <mat-error *ngIf="server_error">{{server_error}}</mat-error>
 </div>
-<top-five-list [top_five_experiencias]="top_five_experiencias">
+<top-five-list *ngIf="top_five_experiencias && !cargando && !server_error" [top_five_experiencias]="top_five_experiencias">
 </top-five-list>
