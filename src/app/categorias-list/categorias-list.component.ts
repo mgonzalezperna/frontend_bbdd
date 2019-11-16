@@ -70,26 +70,35 @@ export class CategoriasListComponent implements OnInit {
 
 }
 
+const LONGITUD_MAXIMA_NOMBRE_CATEGORIA = 45
+const LONGITUD_MAXIMA_DESCRIPCION_CATEGORIA = 45
 @Component({
   selector: 'categoria-detail-dialog',
   templateUrl: 'categoria-detail-dialog.html',
   styleUrls: ['./categorias-list.component.css']
 })
 export class CategoriasDetailComponent {
-
-  nombreValidator: FormControl = new FormControl('', [Validators.required]);
-  descripcionValidator: FormControl = new FormControl('', [Validators.required]);
+  nombreValidator: FormControl = new FormControl('', [Validators.required, Validators.maxLength(LONGITUD_MAXIMA_NOMBRE_CATEGORIA)]);
+  descripcionValidator: FormControl = new FormControl('', [Validators.required, Validators.maxLength(LONGITUD_MAXIMA_DESCRIPCION_CATEGORIA)]);
   isCreate: Boolean
   server_error: String = ""
   cargando: boolean = false
   categoria: Categoria
 
   get errorMsgNombre() {
-    return this.nombreValidator.hasError('required') ? "Debe ingresar nombre" : ''
+    return this.nombreValidator.hasError('required') ? "Debe ingresar nombre" : this.errorMsgNombreMaxLength
+  }
+
+  get errorMsgNombreMaxLength() {
+    return this.nombreValidator.hasError('maxlength') ? `Supera máximo permitido: ${LONGITUD_MAXIMA_NOMBRE_CATEGORIA} caracteres` : ''
   }
 
   get errorMsgDescripcion() {
-    return this.descripcionValidator.hasError('required') ? "Debe ingresar descripcion" : ''
+    return this.descripcionValidator.hasError('required') ? "Debe ingresar descripcion" : this.errorMsgDescripcionMaxLength
+  }
+
+  get errorMsgDescripcionMaxLength() {
+    return this.descripcionValidator.hasError('maxlength') ? `Supera máximo permitido: ${LONGITUD_MAXIMA_DESCRIPCION_CATEGORIA} caracteres` : ''
   }
 
   constructor(
@@ -133,8 +142,12 @@ export class CategoriasDetailComponent {
     this.cargando = false
   }
 
+  get hayErrores() {
+    return this.nombreValidator.errors !== null || this.descripcionValidator.errors !== null
+  }
+
   cantSubmit() {
-    return !this.categoria.nombre || !this.categoria.descripcion || (this.categoria.nombre == this.data.categoria.nombre && this.categoria.descripcion == this.data.categoria.descripcion)
+    return this.hayErrores || (this.categoria.nombre == this.data.categoria.nombre && this.categoria.descripcion == this.data.categoria.descripcion)
   }
 
 }
