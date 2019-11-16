@@ -9,8 +9,8 @@ import { compare } from 'src/app/functions/compare';
   styleUrls: ['./totalizador-list.component.css']
 })
 export class TotalizadorListComponent {
-  displayed_columns: String[] = ['archivo', 'puntaje', 'velocidad', 'total']
   @Input() reportes_descargas: ReporteDescargas[]
+  displayed_columns: String[] = ['archivo', 'puntaje', 'velocidad', 'total']
 
   constructor() {}
 

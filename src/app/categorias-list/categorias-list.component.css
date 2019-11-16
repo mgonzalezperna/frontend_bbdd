@@ -45,3 +45,8 @@
 .full-width {
     width: 100%;
 }
+
+:host ::ng-deep .mat-sort-header-container {
+    margin-left: 1.4rem;
+    justify-content: center;
+}

@@ -1,7 +1,8 @@
-<div *ngIf="reportes_descargas && reportes_descargas.length > 0 else sinResultados" class="container">
+<div class="container">
   <h2 class="titulo">Totalizador de descargas</h2>
 
-  <table mat-table (matSortChange)="sortData($event)" [dataSource]="reportes_descargas" matSort class="mat-elevation-z8">
+  <table style="text-align: center;" mat-table (matSortChange)="sortData($event)" [dataSource]="reportes_descargas"
+    matSort class="mat-elevation-z8">
 
     <ng-container matColumnDef="archivo">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Archivo </th>
@@ -26,7 +27,3 @@
     <tr mat-header-row *matHeaderRowDef="displayed_columns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayed_columns;"></tr>
   </table>
-
-<ng-template #sinResultados>
-  <h1 class="titulo"><strong>No se encontraron resultados</strong></h1>
-</ng-template>

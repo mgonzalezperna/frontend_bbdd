@@ -39,7 +39,7 @@
         <!-- <img mat-card-image> Card image. Stretches the image to the container width -->
         <mat-card-actions>
             <button class="mat-button boton-reporte letra-blanca" mat-button (click)="fetchReportesDescargas()"
-            [disabled]="cantSubmit()">
+                [disabled]="cantSubmit()">
                 Consultar
             </button>
         </mat-card-actions>
@@ -53,15 +53,19 @@
         </mat-card-footer>
 
     </mat-card>
-    <totalizador-list *ngIf="reportes_descargas && !cargando_reporte && !server_error"
+    <totalizador-list *ngIf="reportes_descargas && !cargando_reporte && !server_error && reportes_descargas.length > 0"
         [reportes_descargas]="reportes_descargas">
     </totalizador-list>
 </div>
 
 <div class="loading">
-    <div style="margin:auto;" *ngIf="cargando ||cargando_reporte"
+    <div style="margin:auto;" *ngIf="cargando || cargando_reporte"
         class="spinner-border text-primary d-flex justify-content-center" role="status">
         <span class="sr-only">Loading...</span>
     </div>
     <mat-error *ngIf="server_error">{{server_error}}</mat-error>
 </div>
+
+<h1 *ngIf="reportes_descargas && reportes_descargas.length == 0 && !cargando_reporte" class="titulo"><strong>No se
+        encontraron
+        resultados</strong></h1>
