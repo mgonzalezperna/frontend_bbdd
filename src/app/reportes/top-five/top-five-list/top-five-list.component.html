@@ -1,26 +1,24 @@
 <div class="container">
   <h2 class="titulo">Top 5 de experiencia</h2>
-    <table mat-table [dataSource]="experiencias" matSort class="mat-elevation-z8">
+  <table style="text-align: center;" mat-table [dataSource]="top_five_experiencias" matSort
+    (matSortChange)="sortData($event)" matSort class="mat-elevation-z8">
 
-      <ng-container matColumnDef="titulo">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Título </th>
-        <td mat-cell *matCellDef="let experiencia"> {{experiencia.Titulo}} </td>
-      </ng-container>
+    <ng-container matColumnDef="titulo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Título </th>
+      <td mat-cell *matCellDef="let experiencia"> {{experiencia.Titulo}} </td>
+    </ng-container>
 
-      <ng-container matColumnDef="puntaje">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Puntaje </th>
-        <td mat-cell *matCellDef="let experiencia"> {{experiencia.Puntaje}} </td>
-      </ng-container>
+    <ng-container matColumnDef="puntaje">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Puntaje </th>
+      <td mat-cell *matCellDef="let experiencia"> {{experiencia.Puntaje}} </td>
+    </ng-container>
 
-      <ng-container matColumnDef="comentario">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Comentario </th>
-        <td mat-cell *matCellDef="let experiencia"> {{experiencia.Comentario}} </td>
-      </ng-container>
+    <ng-container matColumnDef="comentario">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Comentario </th>
+      <td mat-cell *matCellDef="let experiencia"> {{experiencia.Comentario}} </td>
+    </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayed_columns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayed_columns;"></tr>
-    </table>
+    <tr mat-header-row *matHeaderRowDef="displayed_columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayed_columns;"></tr>
+  </table>
 </div>
-
-
-
