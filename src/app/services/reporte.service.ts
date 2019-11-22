@@ -17,6 +17,7 @@ export class ReporteService {
   async topFive() {
     const url = API_URL + "/experiencias-descargas"
     const resp = await this.http.get(url).toPromise()
+    console.log("CHAU")
     return resp.json().map(Experiencia.fromJson)
   }
 

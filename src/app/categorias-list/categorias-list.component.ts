@@ -126,15 +126,26 @@ export class CategoriasDetailComponent {
   }
 
   async aceptar() {
+    let consulta
+    let string
     this.server_error = ""
     this.cargando = true
-    try {
+    try {   
       if (this.isCreate) {
-        await this.categoriaService.crearCategoria(this.categoria)
-      } else {
+        consulta = await this.categoriaService.crearCategoria(this.categoria)    
+        string = consulta["_body"]
+
+        if(string.match("Categoria no creada")){
+          this.server_error = "Categoria ya existente"
+        } else if(string.match("Categoria creada exitosamente!")) {
+          this.server_error = ""
+        }
+      } else {     
         await this.categoriaService.actualizarCategoria(this.categoria)
       }
-      this.dialogRef.close("true")
+      if(this.server_error == ""){
+        this.dialogRef.close("true")
+      }
     } catch (error) {
       this.server_error = error
       console.log(error) //mostrar errores

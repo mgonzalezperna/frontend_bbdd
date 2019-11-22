@@ -28,7 +28,7 @@ export class CategoriasService {
 
   async crearCategoria(categoria: Categoria) {
     const url = API_URL + `/categorias/create`
-    await this.http.post(url, categoria.toJSON()).toPromise()
+    return await this.http.post(url, categoria.toJSON()).toPromise()
   }
 
   async eliminar(categoria: Categoria) {
